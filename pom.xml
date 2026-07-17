@@ -24,8 +24,8 @@
    <packaging>pom</packaging>
 
    <name>Java JWT</name>
-   <description>Classes for generating JWTs</description>
-   <url>https://github.com/Bernardo Martínez Garrido/jwt</url>
+   <description>Classes for handling JWTs</description>
+   <url>https://github.com/Bernardo-MG/java-jwt</url>
    <inceptionYear>2026</inceptionYear>
 
    <licenses>
@@ -50,20 +50,20 @@
    <!-- ********************************************** -->
 
    <scm>
-      <connection>scm:git:https://github.com/Bernardo Martínez Garrido/jwt.git</connection>
-      <developerConnection>scm:git:https://github.com/Bernardo Martínez Garrido/jwt.git</developerConnection>
+      <connection>scm:git:https://github.com/Bernardo-MG/java-jwt.git</connection>
+      <developerConnection>scm:git:https://github.com/Bernardo-MG/java-jwt.git</developerConnection>
       <tag>HEAD</tag>
-      <url>https://github.com/Bernardo Martínez Garrido/jwt</url>
+      <url>https://github.com/Bernardo-MG/java-jwt</url>
    </scm>
 
    <issueManagement>
       <system>GitHub</system>
-      <url>https://github.com/Bernardo Martínez Garrido/jwt/issues</url>
+      <url>https://github.com/Bernardo-MG/java-jwt/issues</url>
    </issueManagement>
 
    <ciManagement>
       <system>GitHub Actions</system>
-      <url>https://github.com/Bernardo Martínez Garrido/jwt/actions</url>
+      <url>https://github.com/Bernardo-MG/java-jwt/actions</url>
    </ciManagement>
 
    <!-- ********************************************** -->
@@ -99,7 +99,7 @@
                <!-- Github repository -->
                <id>github</id>
                <name>GitHub Packages</name>
-               <url>https://maven.pkg.github.com/Bernardo Martínez Garrido/jwt</url>
+               <url>https://maven.pkg.github.com/Bernardo-MG/jwt</url>
             </repository>
          </distributionManagement>
       </profile>
@@ -165,7 +165,7 @@
       <!-- ============================================== -->
       <!-- =============== MANIFEST DATA ================ -->
       <!-- ============================================== -->
-      <manifest.name>com/bernardomg/framework/jwt/jwt</manifest.name>
+      <manifest.name>com/bernardomg/framework/jwt</manifest.name>
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
@@ -186,7 +186,7 @@
       <!-- ============================================== -->
       <site.skin.version>2.4.1</site.skin.version>
       <mavenURL>https://mvnrepository.com/artifact/com.bernardomg.framework.jwt/jwt</mavenURL>
-      <githubArtifactURL><![CDATA[https://github.com/Bernardo Martínez Garrido?tab=packages&amp;repo_name=jwt]]></githubArtifactURL>
+      <githubArtifactURL><![CDATA[https://github.com/Bernardo-MG?tab=packages&amp;repo_name=jwt]]></githubArtifactURL>
    </properties>
 
    <!-- ********************************************** -->
