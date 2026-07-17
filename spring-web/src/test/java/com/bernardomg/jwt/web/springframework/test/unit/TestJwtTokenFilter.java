@@ -21,10 +21,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import com.bernardomg.jwt.encoding.JwtTokenData;
 import com.bernardomg.jwt.encoding.TokenDecoder;
 import com.bernardomg.jwt.encoding.TokenValidator;
-import com.bernardomg.jwt.test.configuration.Tokens;
+import com.bernardomg.jwt.test.config.factory.Tokens;
+import com.bernardomg.jwt.test.config.factory.UserDetailsConstants;
+import com.bernardomg.jwt.test.config.factory.UserDets;
 import com.bernardomg.jwt.web.springframework.JwtTokenFilter;
-import com.bernardomg.test.config.factory.SecurityUsers;
-import com.bernardomg.user.test.config.factory.UserConstants;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -78,10 +78,10 @@ class TestJwtTokenFilter {
         // GIVEN
         given(validator.hasExpired(Tokens.TOKEN)).willReturn(false);
 
-        userDetails = SecurityUsers.enabled();
-        given(userDetailsService.loadUserByUsername(UserConstants.USERNAME)).willReturn(userDetails);
+        userDetails = UserDets.enabled();
+        given(userDetailsService.loadUserByUsername(UserDetailsConstants.USERNAME)).willReturn(userDetails);
 
-        jwtTokenData = new JwtTokenData(null, UserConstants.USERNAME, null, null, null, null, null, null);
+        jwtTokenData = new JwtTokenData(null, UserDetailsConstants.USERNAME, null, null, null, null, null, null);
         given(decoder.decode(Tokens.TOKEN)).willReturn(jwtTokenData);
 
         given(request.getHeader("Authorization")).willReturn(HEADER_BEARER);
@@ -93,7 +93,7 @@ class TestJwtTokenFilter {
         authentication = SecurityContextHolder.getContext()
             .getAuthentication();
         Assertions.assertThat(authentication.getName())
-            .isEqualTo(UserConstants.USERNAME);
+            .isEqualTo(UserDetailsConstants.USERNAME);
     }
 
     @Test
@@ -106,10 +106,10 @@ class TestJwtTokenFilter {
         // GIVEN
         given(validator.hasExpired(Tokens.TOKEN)).willReturn(false);
 
-        userDetails = SecurityUsers.credentialsExpired();
-        given(userDetailsService.loadUserByUsername(UserConstants.USERNAME)).willReturn(userDetails);
+        userDetails = UserDets.credentialsExpired();
+        given(userDetailsService.loadUserByUsername(UserDetailsConstants.USERNAME)).willReturn(userDetails);
 
-        jwtTokenData = new JwtTokenData(null, UserConstants.USERNAME, null, null, null, null, null, null);
+        jwtTokenData = new JwtTokenData(null, UserDetailsConstants.USERNAME, null, null, null, null, null, null);
         given(decoder.decode(Tokens.TOKEN)).willReturn(jwtTokenData);
 
         given(request.getHeader("Authorization")).willReturn(HEADER_BEARER);
@@ -134,10 +134,10 @@ class TestJwtTokenFilter {
         // GIVEN
         given(validator.hasExpired(Tokens.TOKEN)).willReturn(false);
 
-        userDetails = SecurityUsers.disabled();
-        given(userDetailsService.loadUserByUsername(UserConstants.USERNAME)).willReturn(userDetails);
+        userDetails = UserDets.disabled();
+        given(userDetailsService.loadUserByUsername(UserDetailsConstants.USERNAME)).willReturn(userDetails);
 
-        jwtTokenData = new JwtTokenData(null, UserConstants.USERNAME, null, null, null, null, null, null);
+        jwtTokenData = new JwtTokenData(null, UserDetailsConstants.USERNAME, null, null, null, null, null, null);
         given(decoder.decode(Tokens.TOKEN)).willReturn(jwtTokenData);
 
         given(request.getHeader("Authorization")).willReturn(HEADER_BEARER);
@@ -162,10 +162,10 @@ class TestJwtTokenFilter {
         // GIVEN
         given(validator.hasExpired(Tokens.TOKEN)).willReturn(false);
 
-        userDetails = SecurityUsers.expired();
-        given(userDetailsService.loadUserByUsername(UserConstants.USERNAME)).willReturn(userDetails);
+        userDetails = UserDets.expired();
+        given(userDetailsService.loadUserByUsername(UserDetailsConstants.USERNAME)).willReturn(userDetails);
 
-        jwtTokenData = new JwtTokenData(null, UserConstants.USERNAME, null, null, null, null, null, null);
+        jwtTokenData = new JwtTokenData(null, UserDetailsConstants.USERNAME, null, null, null, null, null, null);
         given(decoder.decode(Tokens.TOKEN)).willReturn(jwtTokenData);
 
         given(request.getHeader("Authorization")).willReturn(HEADER_BEARER);
@@ -210,10 +210,10 @@ class TestJwtTokenFilter {
         // GIVEN
         given(validator.hasExpired(Tokens.TOKEN)).willReturn(false);
 
-        userDetails = SecurityUsers.locked();
-        given(userDetailsService.loadUserByUsername(UserConstants.USERNAME)).willReturn(userDetails);
+        userDetails = UserDets.locked();
+        given(userDetailsService.loadUserByUsername(UserDetailsConstants.USERNAME)).willReturn(userDetails);
 
-        jwtTokenData = new JwtTokenData(null, UserConstants.USERNAME, null, null, null, null, null, null);
+        jwtTokenData = new JwtTokenData(null, UserDetailsConstants.USERNAME, null, null, null, null, null, null);
         given(decoder.decode(Tokens.TOKEN)).willReturn(jwtTokenData);
 
         given(request.getHeader("Authorization")).willReturn(HEADER_BEARER);
