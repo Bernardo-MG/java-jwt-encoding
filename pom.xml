@@ -41,8 +41,8 @@
    <!-- ********************************************** -->
 
    <modules>
-     <module>core</module>
-     <module>spring-web</module>
+     <module>encoding</module>
+     <module>spring-security-web</module>
    </modules>
 
    <!-- ********************************************** -->
@@ -237,7 +237,7 @@
          <!-- ============================================== -->
          <dependency>
             <groupId>com.bernardomg.framework.jwt</groupId>
-            <artifactId>jwt-core</artifactId>
+            <artifactId>jwt-encoding</artifactId>
             <version>${project.version}</version>
          </dependency>
       </dependencies>
