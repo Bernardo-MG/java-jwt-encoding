@@ -21,7 +21,7 @@
    <groupId>com.bernardomg.framework.jwt</groupId>
    <artifactId>jwt</artifactId>
    <version>0.0.1-SNAPSHOT</version>
-   <packaging>jar</packaging>
+   <packaging>pom</packaging>
 
    <name>Java JWT</name>
    <description>Classes for generating JWTs</description>
@@ -35,6 +35,15 @@
          <distribution>repo</distribution>
       </license>
    </licenses>
+
+   <!-- ********************************************** -->
+   <!-- ******************* MODULES ****************** -->
+   <!-- ********************************************** -->
+
+   <modules>
+     <module>core</module>
+     <module>web</module>
+   </modules>
 
    <!-- ********************************************** -->
    <!-- ********* INFRASTRUCTURE AND SERVICES ******** -->
@@ -160,11 +169,9 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <assertj.version>3.27.7</assertj.version>
-      <junit.jupiter.version>6.0.3</junit.jupiter.version>
-      <mockito.version>5.23.0</mockito.version>
-      <log4j.version>2.25.3</log4j.version>
-      <slf4j.version>2.0.17</slf4j.version>
+      <jjwt.version>0.13.0</jjwt.version>
+      <spring.version>6.2.15</spring.version>
+      <spring.boot.version>3.5.9</spring.boot.version>
       <!-- ============================================== -->
       <!-- ============ PLUGIN CONFIGURATION ============ -->
       <!-- ============================================== -->
@@ -189,12 +196,49 @@
    <dependencyManagement>
       <dependencies>
          <dependency>
-            <!-- JUnit BOM -->
-            <groupId>org.junit</groupId>
-            <artifactId>junit-bom</artifactId>
-            <version>${junit.jupiter.version}</version>
+            <!-- Spring Framework BOM -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-framework-bom</artifactId>
+            <version>${spring.version}</version>
             <type>pom</type>
             <scope>import</scope>
+         </dependency>
+         <dependency>
+            <!-- Spring Boot Dependencies BOM -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring.boot.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+         <!-- ============================================== -->
+         <!-- =============== JSON WEB TOKEN =============== -->
+         <!-- ============================================== -->
+         <dependency>
+            <!-- JSON Web Token API -->
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jjwt.version}</version>
+         </dependency>
+         <dependency>
+            <!-- JSON Web Token Impl -->
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jjwt.version}</version>
+         </dependency>
+         <dependency>
+            <!-- JSON Jackson -->
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jjwt.version}</version>
+         </dependency>
+         <!-- ============================================== -->
+         <!-- ================= PROJECT ==================== -->
+         <!-- ============================================== -->
+         <dependency>
+            <groupId>com.bernardomg.framework.jwt</groupId>
+            <artifactId>jwt-core</artifactId>
+            <version>${project.version}</version>
          </dependency>
       </dependencies>
    </dependencyManagement>
@@ -207,20 +251,17 @@
          <!-- SLF4J API -->
          <groupId>org.slf4j</groupId>
          <artifactId>slf4j-api</artifactId>
-         <version>${slf4j.version}</version>
       </dependency>
       <dependency>
          <!-- Log4j SLF4J Bridge -->
          <groupId>org.apache.logging.log4j</groupId>
          <artifactId>log4j-slf4j2-impl</artifactId>
-         <version>${log4j.version}</version>
          <scope>provided</scope>
       </dependency>
       <dependency>
          <!-- Log4j core -->
          <groupId>org.apache.logging.log4j</groupId>
          <artifactId>log4j-core</artifactId>
-         <version>${log4j.version}</version>
          <scope>provided</scope>
       </dependency>
       <!-- ============================================== -->
@@ -236,14 +277,18 @@
          <!-- Mockito -->
          <groupId>org.mockito</groupId>
          <artifactId>mockito-core</artifactId>
-         <version>${mockito.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- Mockito JUnit Jupiter -->
+         <groupId>org.mockito</groupId>
+         <artifactId>mockito-junit-jupiter</artifactId>
          <scope>test</scope>
       </dependency>
       <dependency>
          <!-- AssertJ -->
          <groupId>org.assertj</groupId>
          <artifactId>assertj-core</artifactId>
-         <version>${assertj.version}</version>
          <scope>test</scope>
       </dependency>
    </dependencies>
