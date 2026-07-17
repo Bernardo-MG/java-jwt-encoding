@@ -22,7 +22,18 @@
    <artifactId>jwt-encoding</artifactId>
    <packaging>jar</packaging>
 
-   <name>Security JWT Core</name>
+   <name>JWT encoding</name>
+
+   <!-- ********************************************** -->
+   <!-- **************** PROPERTIES ****************** -->
+   <!-- ********************************************** -->
+
+   <properties>
+      <!-- ============================================== -->
+      <!-- =============== MANIFEST DATA ================ -->
+      <!-- ============================================== -->
+      <manifest.name>com/bernardomg/framework/jwt/encoding</manifest.name>
+   </properties>
 
    <!-- ********************************************** -->
    <!-- *************** DEPENDENCIES ***************** -->
