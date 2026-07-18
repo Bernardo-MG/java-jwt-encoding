@@ -90,7 +90,7 @@
                <!-- Github repository -->
                <id>github</id>
                <name>GitHub Packages</name>
-               <url>https://maven.pkg.github.com/Bernardo-MG/java-jwt</url>
+               <url>https://maven.pkg.github.com/bernardo-mg/java-jwt-encoding</url>
             </repository>
          </distributionManagement>
       </profile>
