@@ -1,5 +1,5 @@
 
-package com.bernardomg.jwt.encoding.test.unit.jjwt;
+package com.bernardomg.jwt.encoding.test.unit;
 
 import java.time.Instant;
 import java.util.List;
