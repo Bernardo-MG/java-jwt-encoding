@@ -19,13 +19,13 @@
    <!-- ********************************************** -->
 
    <groupId>com.bernardomg.framework.jwt</groupId>
-   <artifactId>jwt</artifactId>
-   <version>0.0.1-SNAPSHOT</version>
+   <artifactId>jwt-encoding</artifactId>
+   <version>1.0.0</version>
    <packaging>jar</packaging>
 
-   <name>Java JWT</name>
-   <description>Classes for generating JWTs</description>
-   <url>https://github.com/Bernardo Martínez Garrido/jwt</url>
+   <name>Java JWT Encoding</name>
+   <description>Classes for handling JWT encoding</description>
+   <url>https://github.com/Bernardo-MG/java-jwt</url>
    <inceptionYear>2026</inceptionYear>
 
    <licenses>
@@ -41,20 +41,20 @@
    <!-- ********************************************** -->
 
    <scm>
-      <connection>scm:git:https://github.com/Bernardo Martínez Garrido/jwt.git</connection>
-      <developerConnection>scm:git:https://github.com/Bernardo Martínez Garrido/jwt.git</developerConnection>
+      <connection>scm:git:https://github.com/Bernardo-MG/java-jwt.git</connection>
+      <developerConnection>scm:git:https://github.com/Bernardo-MG/java-jwt.git</developerConnection>
       <tag>HEAD</tag>
-      <url>https://github.com/Bernardo Martínez Garrido/jwt</url>
+      <url>https://github.com/Bernardo-MG/java-jwt</url>
    </scm>
 
    <issueManagement>
       <system>GitHub</system>
-      <url>https://github.com/Bernardo Martínez Garrido/jwt/issues</url>
+      <url>https://github.com/Bernardo-MG/java-jwt/issues</url>
    </issueManagement>
 
    <ciManagement>
       <system>GitHub Actions</system>
-      <url>https://github.com/Bernardo Martínez Garrido/jwt/actions</url>
+      <url>https://github.com/Bernardo-MG/java-jwt/actions</url>
    </ciManagement>
 
    <!-- ********************************************** -->
@@ -90,7 +90,7 @@
                <!-- Github repository -->
                <id>github</id>
                <name>GitHub Packages</name>
-               <url>https://maven.pkg.github.com/Bernardo Martínez Garrido/jwt</url>
+               <url>https://maven.pkg.github.com/Bernardo-MG/java-jwt</url>
             </repository>
          </distributionManagement>
       </profile>
@@ -156,15 +156,13 @@
       <!-- ============================================== -->
       <!-- =============== MANIFEST DATA ================ -->
       <!-- ============================================== -->
-      <manifest.name>com/bernardomg/framework/jwt/jwt</manifest.name>
+      <manifest.name>com/bernardomg/framework/jwt</manifest.name>
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <assertj.version>3.27.7</assertj.version>
-      <junit.jupiter.version>6.0.3</junit.jupiter.version>
-      <mockito.version>5.23.0</mockito.version>
-      <log4j.version>2.25.3</log4j.version>
-      <slf4j.version>2.0.17</slf4j.version>
+      <jjwt.version>0.13.0</jjwt.version>
+      <spring.version>6.2.15</spring.version>
+      <spring.boot.version>3.5.9</spring.boot.version>
       <!-- ============================================== -->
       <!-- ============ PLUGIN CONFIGURATION ============ -->
       <!-- ============================================== -->
@@ -179,7 +177,7 @@
       <!-- ============================================== -->
       <site.skin.version>2.4.1</site.skin.version>
       <mavenURL>https://mvnrepository.com/artifact/com.bernardomg.framework.jwt/jwt</mavenURL>
-      <githubArtifactURL><![CDATA[https://github.com/Bernardo Martínez Garrido?tab=packages&amp;repo_name=jwt]]></githubArtifactURL>
+      <githubArtifactURL><![CDATA[https://github.com/Bernardo-MG?tab=packages&amp;repo_name=jwt]]></githubArtifactURL>
    </properties>
 
    <!-- ********************************************** -->
@@ -189,17 +187,72 @@
    <dependencyManagement>
       <dependencies>
          <dependency>
-            <!-- JUnit BOM -->
-            <groupId>org.junit</groupId>
-            <artifactId>junit-bom</artifactId>
-            <version>${junit.jupiter.version}</version>
+            <!-- Spring Framework BOM -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-framework-bom</artifactId>
+            <version>${spring.version}</version>
             <type>pom</type>
             <scope>import</scope>
+         </dependency>
+         <dependency>
+            <!-- Spring Boot Dependencies BOM -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring.boot.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+         <!-- ============================================== -->
+         <!-- =============== JSON WEB TOKEN =============== -->
+         <!-- ============================================== -->
+         <dependency>
+            <!-- JSON Web Token API -->
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jjwt.version}</version>
+         </dependency>
+         <dependency>
+            <!-- JSON Web Token Impl -->
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jjwt.version}</version>
+         </dependency>
+         <dependency>
+            <!-- JSON Jackson -->
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jjwt.version}</version>
+         </dependency>
+         <!-- ============================================== -->
+         <!-- ================= PROJECT ==================== -->
+         <!-- ============================================== -->
+         <dependency>
+            <groupId>com.bernardomg.framework.jwt</groupId>
+            <artifactId>jwt-encoding</artifactId>
+            <version>${project.version}</version>
          </dependency>
       </dependencies>
    </dependencyManagement>
 
    <dependencies>
+      <!-- ============================================== -->
+      <!-- =============== JSON WEB TOKEN =============== -->
+      <!-- ============================================== -->
+      <dependency>
+         <!-- JSON Web Token API -->
+         <groupId>io.jsonwebtoken</groupId>
+         <artifactId>jjwt-api</artifactId>
+      </dependency>
+      <dependency>
+         <!-- JSON Web Token Impl -->
+         <groupId>io.jsonwebtoken</groupId>
+         <artifactId>jjwt-impl</artifactId>
+      </dependency>
+      <dependency>
+         <!-- JSON Jackson -->
+         <groupId>io.jsonwebtoken</groupId>
+         <artifactId>jjwt-jackson</artifactId>
+      </dependency>
       <!-- ============================================== -->
       <!-- ================== LOGGERS =================== -->
       <!-- ============================================== -->
@@ -207,20 +260,17 @@
          <!-- SLF4J API -->
          <groupId>org.slf4j</groupId>
          <artifactId>slf4j-api</artifactId>
-         <version>${slf4j.version}</version>
       </dependency>
       <dependency>
          <!-- Log4j SLF4J Bridge -->
          <groupId>org.apache.logging.log4j</groupId>
          <artifactId>log4j-slf4j2-impl</artifactId>
-         <version>${log4j.version}</version>
          <scope>provided</scope>
       </dependency>
       <dependency>
          <!-- Log4j core -->
          <groupId>org.apache.logging.log4j</groupId>
          <artifactId>log4j-core</artifactId>
-         <version>${log4j.version}</version>
          <scope>provided</scope>
       </dependency>
       <!-- ============================================== -->
@@ -236,14 +286,18 @@
          <!-- Mockito -->
          <groupId>org.mockito</groupId>
          <artifactId>mockito-core</artifactId>
-         <version>${mockito.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- Mockito JUnit Jupiter -->
+         <groupId>org.mockito</groupId>
+         <artifactId>mockito-junit-jupiter</artifactId>
          <scope>test</scope>
       </dependency>
       <dependency>
          <!-- AssertJ -->
          <groupId>org.assertj</groupId>
          <artifactId>assertj-core</artifactId>
-         <version>${assertj.version}</version>
          <scope>test</scope>
       </dependency>
    </dependencies>
