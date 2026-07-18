@@ -21,7 +21,7 @@
    <groupId>com.bernardomg.framework.jwt</groupId>
    <artifactId>jwt</artifactId>
    <version>0.0.1-SNAPSHOT</version>
-   <packaging>pom</packaging>
+   <packaging>jar</packaging>
 
    <name>Java JWT</name>
    <description>Classes for handling JWTs</description>
@@ -35,15 +35,6 @@
          <distribution>repo</distribution>
       </license>
    </licenses>
-
-   <!-- ********************************************** -->
-   <!-- ******************* MODULES ****************** -->
-   <!-- ********************************************** -->
-
-   <modules>
-     <module>encoding</module>
-     <module>spring-security-web</module>
-   </modules>
 
    <!-- ********************************************** -->
    <!-- ********* INFRASTRUCTURE AND SERVICES ******** -->
@@ -244,6 +235,24 @@
    </dependencyManagement>
 
    <dependencies>
+      <!-- ============================================== -->
+      <!-- =============== JSON WEB TOKEN =============== -->
+      <!-- ============================================== -->
+      <dependency>
+         <!-- JSON Web Token API -->
+         <groupId>io.jsonwebtoken</groupId>
+         <artifactId>jjwt-api</artifactId>
+      </dependency>
+      <dependency>
+         <!-- JSON Web Token Impl -->
+         <groupId>io.jsonwebtoken</groupId>
+         <artifactId>jjwt-impl</artifactId>
+      </dependency>
+      <dependency>
+         <!-- JSON Jackson -->
+         <groupId>io.jsonwebtoken</groupId>
+         <artifactId>jjwt-jackson</artifactId>
+      </dependency>
       <!-- ============================================== -->
       <!-- ================== LOGGERS =================== -->
       <!-- ============================================== -->
