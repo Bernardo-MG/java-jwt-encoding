@@ -1,9 +1,8 @@
-# Java JWT
+# JWT Encoding
 
-Classes for handling JWTs
+Classes for handling JWT encoding.
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.bernardomg.framework.jwt/jwt-encoding.svg)][maven-repo-encoding]
-[![Maven Central](https://img.shields.io/maven-central/v/com.bernardomg.framework.jwt/jwt-spring-security-web.svg)][maven-repo-web]
+[![Maven Central](https://img.shields.io/maven-central/v/com.bernardomg.framework.jwt/jwt-encoding.svg)][maven-repo]
 
 ## Usage
 
@@ -40,8 +39,7 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 
 The project has been released under the [MIT License][license].
 
-[maven-repo-encoding]: https://mvnrepository.com/artifact/com.bernardomg.framework.jwt/jwt-encoding
-[maven-repo-web]: https://mvnrepository.com/artifact/com.bernardomg.framework.jwt/jwt-spring-security-web
+[maven-repo]: https://mvnrepository.com/artifact/com.bernardomg.framework.jwt/java-jwt-encoding
 [issues]: https://github.com/${repoUserId}/${artifactId}/issues
 [license]: https://www.opensource.org/licenses/mit-license.php
 [scm]: https://github.com/${repoUserId}/${artifactId}
