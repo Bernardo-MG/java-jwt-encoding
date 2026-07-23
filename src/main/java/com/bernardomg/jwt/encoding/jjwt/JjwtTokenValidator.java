@@ -1,6 +1,8 @@
 
 package com.bernardomg.jwt.encoding.jjwt;
 
+import java.time.Instant;
+
 import javax.crypto.SecretKey;
 
 import org.slf4j.Logger;
@@ -56,6 +58,32 @@ public final class JjwtTokenValidator implements TokenValidator {
         }
 
         return expired;
+    }
+
+    @Override
+    public final boolean isInFuture(final String token) {
+        final Instant now;
+        Instant       notBefore;
+        Boolean       future;
+
+        now = Instant.now();
+        try {
+            // Check if token is expired
+            notBefore = tokenDecoder.decode(token)
+                .notBefore();
+        } catch (final JwtException e) {
+            // Token parsing failed
+            log.debug("Failed parsing token", e);
+            notBefore = null;
+        }
+
+        if (notBefore == null) {
+            future = false;
+        } else {
+            future = now.isBefore(notBefore);
+        }
+
+        return future;
     }
 
 }

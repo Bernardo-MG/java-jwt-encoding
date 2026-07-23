@@ -126,7 +126,7 @@ class TestJjwtTokenDecoderDecode {
         final Instant notBefore;
 
         // GIVEN
-        token = JwtTokens.WITH_NOT_BEFORE;
+        token = JwtTokens.WITH_NOT_BEFORE_IN_PAST;
 
         // WHEN
         notBefore = decoder.decode(token)

@@ -18,4 +18,13 @@ public interface TokenValidator {
      */
     public boolean hasExpired(final String token);
 
+    /**
+     * Check if the token has a not before date in the future.
+     *
+     * @param token
+     *            token to validate
+     * @return {@code true} if the token has a not before date in the future, {@code false} otherwise
+     */
+    public boolean isInFuture(final String token);
+
 }
