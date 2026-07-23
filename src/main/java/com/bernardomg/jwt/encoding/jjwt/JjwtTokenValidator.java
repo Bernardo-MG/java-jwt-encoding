@@ -8,6 +8,7 @@ import javax.crypto.SecretKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bernardomg.jwt.encoding.JwtTokenData;
 import com.bernardomg.jwt.encoding.TokenDecoder;
 import com.bernardomg.jwt.encoding.TokenValidator;
 
@@ -26,30 +27,13 @@ public final class JjwtTokenValidator implements TokenValidator {
      */
     private static final Logger log = LoggerFactory.getLogger(JjwtTokenValidator.class);
 
-    /**
-     * Token decoder. Without this the token claims can't be validated.
-     */
-    private final TokenDecoder  tokenDecoder;
-
-    /**
-     * Constructs a validator with the received arguments.
-     *
-     * @param secretKey
-     *            secret key used for the token
-     */
-    public JjwtTokenValidator(final SecretKey secretKey) {
-        super();
-
-        tokenDecoder = new JjwtTokenDecoder(secretKey);
-    }
-
     @Override
-    public final boolean hasExpired(final String token) {
+    public final boolean hasExpired(final JwtTokenData token) {
         Boolean expired;
 
         try {
             // Check if token is expired
-            expired = tokenDecoder.decode(token)
+            expired =token
                 .isExpired();
         } catch (final JwtException e) {
             // Token parsing failed
@@ -61,7 +45,7 @@ public final class JjwtTokenValidator implements TokenValidator {
     }
 
     @Override
-    public final boolean isInFuture(final String token) {
+    public final boolean isInFuture(final JwtTokenData token) {
         final Instant now;
         Instant       notBefore;
         Boolean       future;
@@ -69,7 +53,7 @@ public final class JjwtTokenValidator implements TokenValidator {
         now = Instant.now();
         try {
             // Check if token is expired
-            notBefore = tokenDecoder.decode(token)
+            notBefore = token
                 .notBefore();
         } catch (final JwtException e) {
             // Token parsing failed

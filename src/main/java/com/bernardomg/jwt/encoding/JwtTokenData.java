@@ -75,4 +75,28 @@ public record JwtTokenData(String id, String subject, String issuer, Instant iss
         return expired;
     }
 
+    /**
+     * Returns if the token is in the future.
+     *
+     * @return {@code true} if the token is expired, {@code false} otherwise
+     */
+    public final boolean isInFuture() {
+        final Instant current;
+        final boolean expired;
+
+        // TODO: test this
+        if (expiration != null) {
+            // Compare expiration to current date
+            current = Instant.now();
+            expired = expiration.isBefore(current);
+            log.debug("Expired '{}' as token expires on {}, and the current date is {}.", expired, expiration, current);
+        } else {
+            // No expiration
+            expired = false;
+            log.debug("The token has no expiration date");
+        }
+
+        return expired;
+    }
+
 }

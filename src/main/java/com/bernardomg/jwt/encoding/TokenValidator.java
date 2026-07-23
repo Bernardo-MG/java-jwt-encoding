@@ -16,7 +16,7 @@ public interface TokenValidator {
      *            token to validate
      * @return {@code true} if the token has expired, {@code false} otherwise
      */
-    public boolean hasExpired(final String token);
+    public boolean hasExpired(final JwtTokenData token);
 
     /**
      * Check if the token has a not before date in the future.
@@ -25,6 +25,6 @@ public interface TokenValidator {
      *            token to validate
      * @return {@code true} if the token has a not before date in the future, {@code false} otherwise
      */
-    public boolean isInFuture(final String token);
+    public boolean isInFuture(final JwtTokenData token);
 
 }

@@ -18,7 +18,7 @@ class TestJjwtTokenValidatorHasExpired {
 
     private final TokenEncoder       encoder   = new JjwtTokenEncoder(Tokens.KEY);
 
-    private final JjwtTokenValidator validator = new JjwtTokenValidator(Tokens.KEY);
+    private final JjwtTokenValidator validator = new JjwtTokenValidator();
 
     @Test
     @DisplayName("An expired token is identified as such")
