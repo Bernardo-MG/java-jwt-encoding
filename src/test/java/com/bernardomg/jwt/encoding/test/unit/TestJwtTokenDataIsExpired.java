@@ -1,18 +1,15 @@
 
 package com.bernardomg.jwt.encoding.test.unit;
 
-import java.time.Instant;
-import java.util.List;
-import java.util.Map;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.bernardomg.jwt.encoding.JwtTokenData;
+import com.bernardomg.jwt.encoding.test.config.factory.JwtTokenDatas;
 
-@DisplayName("JwtTokenData")
-class TestJwtTokenData {
+@DisplayName("JwtTokenData - is expired")
+class TestJwtTokenDataIsExpired {
 
     @Test
     @DisplayName("When the token is expired, it is expired")
@@ -20,8 +17,7 @@ class TestJwtTokenData {
         final JwtTokenData token;
 
         // GIVEN
-        token = new JwtTokenData(null, null, null, null, null, Instant.now()
-            .minusSeconds(60), List.of(), Map.of());
+        token = JwtTokenDatas.expired();
 
         // WHEN / THEN
         Assertions.assertThat(token.isExpired())
@@ -35,7 +31,7 @@ class TestJwtTokenData {
         final JwtTokenData token;
 
         // GIVEN
-        token = new JwtTokenData(null, null, null, null, null, null, List.of(), Map.of());
+        token = JwtTokenDatas.empty();
 
         // WHEN / THEN
         Assertions.assertThat(token.isExpired())
@@ -49,8 +45,7 @@ class TestJwtTokenData {
         final JwtTokenData token;
 
         // GIVEN
-        token = new JwtTokenData(null, null, null, null, null, Instant.now()
-            .plusSeconds(60), List.of(), Map.of());
+        token = JwtTokenDatas.notExpired();
 
         // WHEN / THEN
         Assertions.assertThat(token.isExpired())

@@ -60,19 +60,38 @@ public record JwtTokenData(String id, String subject, String issuer, Instant iss
         final Instant current;
         final boolean expired;
 
-        // TODO: test this
         if (expiration != null) {
-            // Compare expiration to current date
             current = Instant.now();
             expired = expiration.isBefore(current);
             log.debug("Expired '{}' as token expires on {}, and the current date is {}.", expired, expiration, current);
         } else {
-            // No expiration
             expired = false;
             log.debug("The token has no expiration date");
         }
 
         return expired;
+    }
+
+    /**
+     * Returns if the token is before the start.
+     *
+     * @return {@code true} if the token is before the start, {@code false} otherwise
+     */
+    public final boolean isBeforeStart() {
+        final Instant current;
+        final boolean beforeStart;
+
+        if (notBefore != null) {
+            current = Instant.now();
+            beforeStart = current.isBefore(notBefore);
+            log.debug("Before starting date '{}' as token not before date {}, and the current date is {}.", beforeStart,
+                notBefore, current);
+        } else {
+            beforeStart = false;
+            log.debug("The token has no not before date");
+        }
+
+        return beforeStart;
     }
 
 }
