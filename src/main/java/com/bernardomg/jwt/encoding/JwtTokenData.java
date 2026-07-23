@@ -60,14 +60,11 @@ public record JwtTokenData(String id, String subject, String issuer, Instant iss
         final Instant current;
         final boolean expired;
 
-        // TODO: test this
         if (expiration != null) {
-            // Compare expiration to current date
             current = Instant.now();
             expired = expiration.isBefore(current);
             log.debug("Expired '{}' as token expires on {}, and the current date is {}.", expired, expiration, current);
         } else {
-            // No expiration
             expired = false;
             log.debug("The token has no expiration date");
         }
@@ -76,27 +73,25 @@ public record JwtTokenData(String id, String subject, String issuer, Instant iss
     }
 
     /**
-     * Returns if the token is in the future.
+     * Returns if the token is before the start.
      *
-     * @return {@code true} if the token is expired, {@code false} otherwise
+     * @return {@code true} if the token is before the start, {@code false} otherwise
      */
-    public final boolean isInFuture() {
+    public final boolean isBeforeStart() {
         final Instant current;
-        final boolean expired;
+        final boolean beforeStart;
 
-        // TODO: test this
-        if (expiration != null) {
-            // Compare expiration to current date
+        if (notBefore != null) {
             current = Instant.now();
-            expired = expiration.isBefore(current);
-            log.debug("Expired '{}' as token expires on {}, and the current date is {}.", expired, expiration, current);
+            beforeStart = current.isBefore(notBefore);
+            log.debug("Before starting date '{}' as token not before date {}, and the current date is {}.", beforeStart,
+                notBefore, current);
         } else {
-            // No expiration
-            expired = false;
-            log.debug("The token has no expiration date");
+            beforeStart = false;
+            log.debug("The token has no not before date");
         }
 
-        return expired;
+        return beforeStart;
     }
 
 }
